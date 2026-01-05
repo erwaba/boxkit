@@ -1,0 +1,15 @@
+FROM quay.io/fedora/fedora-toolbox:latest
+
+LABEL com.github.containers.toolbox="true"
+
+# Copy the setup scripts and package list
+COPY ../scripts/scanners.sh /
+COPY ../scripts/distrobox-shims.sh /
+COPY ../packages/scanners.packages /
+
+# Run the setup scripts
+RUN chmod +x scanners.sh distrobox-shims.sh && /scanners.sh
+RUN rm /scanners.sh /distrobox-shims.sh /scanners.packages
+
+# export the app
+RUN distrobox-export -app gscan2pdf -el scan
