@@ -10,6 +10,3 @@ COPY ../packages/scanners.packages /
 # Run the setup scripts
 RUN chmod +x scanners.sh distrobox-shims.sh && /scanners.sh
 RUN rm /scanners.sh /distrobox-shims.sh /scanners.packages
-
-# export the app
-RUN distrobox-export -app gscan2pdf -el scan
