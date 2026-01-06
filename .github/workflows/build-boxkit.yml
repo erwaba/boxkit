@@ -28,6 +28,7 @@ jobs:
       fail-fast: false
       matrix:
         containerfile:
+       # ADD LIST OF CONTAINERS TO BUILD HERE
           - scanners
        #- fedora-example # Included as an example to demonstrate multi-image builds, uncomment to build the fedora-example container too
     steps:

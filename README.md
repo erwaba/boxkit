@@ -1,24 +1,17 @@
 # boxkit
 
+Collection of my personal distrobox containers.
+
 ## What is boxkit ?
 
-boxkit is a set of GitHub actions and skeleton files to build custom toolbox and distrobox images. Basically, clone this repo, make any changes you need, and then generate your custom images.
-
-Note that boxkit can be used independently of Fedora or uBlue OS.
-boxkit requires you atleast understand the basics of [ContainerFiles](https://www.mankier.com/5/Containerfile) and [shell scripting.](https://www.shellscript.sh/)
+boxkit is a set of GitHub actions and skeleton files to build custom toolbox and distrobox images.
 
 ## Base images
-
-You can use the Docker/OCI container image of practically any distribution as your base image to build your custom image off of. Note that the base images can also be used directly with distrobox/toolbox without any modifications.
 
 Here is a list of some base images you can use:
 
 - [toolbx Community images](https://github.com/toolbx-images/images)
 - [uBlue toolboxes](https://github.com/ublue-os/toolboxes)
-
-Try to derive your custom images from these base images so we can all help maintain them over time, you can't have bling without good stock!
-
-Tag your image with `boxkit` to share with others!
 
 ## How to use boxkit
 
@@ -46,8 +39,8 @@ jobs:
       - [your_custom_image_2]
 ```
 
-**Note:** 
-- You can choose to only generate a single custom image if you want. 
+**Note:**
+- You can choose to only generate a single custom image if you want.
 - You can remove the boxkit and fedora-example images provided in the boxkit repo and only generate your own custom images.
 - The `scripts/` and `packages/` folders are optional, you can generate your custom images without them, but they are highly recommended to use.
 - The name of your custom image and ContainerFile **MUST** be the same. <br>
@@ -56,7 +49,6 @@ jobs:
 - The URL for the generated images will be `ghcr.io/<username>/<image_name>` by default.
 
 ### Signing your images
-Although optional, it is **Highly recommended** you use container signing for your images.
 To sign your images, follow the steps below:
 
 1. [Install `cosign`.](https://docs.sigstore.dev/cosign/system_config/installation/)
@@ -90,17 +82,13 @@ We use the default boxkit image as an example to show you how to create a distro
 
 If you use distrobox:
 
-    distrobox create -i ghcr.io/ublue-os/boxkit -n boxkit
+    distrobox create -i ghcr.io/erwaba/boxkit -n boxkit
     distrobox enter boxkit
-    
-If you use toolbox:
 
-    toolbox create -i ghcr.io/ublue-os/boxkit -c boxkit
-    toolbox enter boxkit
 
 **NOTE:**
 - You can use `chezmoi` to pull down your dotfiles and set up git sync.
-- It is recommended to use the [Ptyxis](https://flathub.org/apps/app.devsuite.Ptyxis) terminal, which provides seamless integration with various podman/distrobox/toolbx containers. 
+- It is recommended to use the [Ptyxis](https://flathub.org/apps/app.devsuite.Ptyxis) terminal, which provides seamless integration with various podman/distrobox/toolbx containers.
 
 ## Custom images built with boxkit
 
@@ -115,7 +103,5 @@ Here is a list of some awesome custom images built using boxkit.
 These images are signed with sisgstore's [cosign](https://docs.sigstore.dev/quickstart/quickstart-cosign/). You can verify the signature by downloading the `cosign.pub` key from this repo and running the following command:
 
     cosign verify --key cosign.pub ghcr.io/ublue-os/boxkit
-    
-If you're forking this repo you should [read the docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets) on keeping secrets in github. You need to [generate a new keypair](https://docs.sigstore.dev/cosign/key_management/signing_with_self-managed_keys/) with cosign. The public key can be in your public repo (your users need it to check the signatures), and you can paste the private key in Settings -> Secrets -> Actions.
 
-![Alt](https://repobeats.axiom.co/api/embed/7c5f037d792c6deb1946e5bc040f64a0fc8abeab.svg "Repobeats analytics image")
+If you're forking this repo you should [read the docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets) on keeping secrets in github. You need to [generate a new keypair](https://docs.sigstore.dev/cosign/key_management/signing_with_self-managed_keys/) with cosign. The public key can be in your public repo (your users need it to check the signatures), and you can paste the private key in Settings -> Secrets -> Actions.
