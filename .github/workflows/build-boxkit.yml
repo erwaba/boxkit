@@ -31,6 +31,7 @@ jobs:
        # ADD LIST OF CONTAINERS TO BUILD HERE
           - scanners
           - blabel
+          - fedora
        #- fedora-example # Included as an example to demonstrate multi-image builds, uncomment to build the fedora-example container too
     steps:
       # Clone code to runner
