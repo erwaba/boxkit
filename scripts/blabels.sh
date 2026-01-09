@@ -5,4 +5,4 @@
 
 # Update the container and install packages
 dnf update -y
-grep -v '^#' ./blabels.packages | xargs dnf install -y
+grep -v '^#' ./blabels.packages | xargs apt install -y
