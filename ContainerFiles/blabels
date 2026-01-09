@@ -3,15 +3,15 @@ FROM docker.io/library/debian:stable
 LABEL com.github.containers.toolbox="true"
 
 # Copy the setup scripts and package list
-COPY ../scripts/blabels.sh /
+COPY ../scripts/blabel.sh /
 COPY ../scripts/distrobox-shims.sh /
-COPY ../packages/blabels.packages /
+COPY ../packages/blabel.packages /
 
 # Run the setup scripts
-RUN chmod +x blabels.sh distrobox-shims.sh && /blabels.sh
-RUN rm /blabels.sh /distrobox-shims.sh /blabels.packages
+RUN chmod +x blabel.sh distrobox-shims.sh && /blabel.sh
+RUN rm /blabel.sh /distrobox-shims.sh /blabel.packages
 
-## the below is all to install blabels
+## the below is all to install blabel
 
 # Install required packages
 RUN apt-get update && apt-get install -y gnupg ca-certificates
