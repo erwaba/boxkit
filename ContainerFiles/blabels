@@ -1,0 +1,31 @@
+FROM quay.io/fedora/debian-toolbox:latest
+
+LABEL com.github.containers.toolbox="true"
+
+# Copy the setup scripts and package list
+COPY ../scripts/blabels.sh /
+COPY ../scripts/distrobox-shims.sh /
+COPY ../packages/blabels.packages /
+
+# Run the setup scripts
+RUN chmod +x blabels.sh distrobox-shims.sh && /blabels.sh
+RUN rm /blabels.sh /distrobox-shims.sh /blabels.packages
+
+## the below is all to install blabels
+
+# Install required packages
+RUN apt-get update && apt-get install -y gnupg ca-certificates
+
+# Download and add the GPG key to the keyring directory
+RUN mkdir -p /etc/apt/keyrings && \
+    gpg --keyserver keyserver.ubuntu.com --recv-keys A43CB5E4F09ED168 && \
+    gpg --export A43CB5E4F09ED168 > /etc/apt/keyrings/blabel.gpg
+
+# Add the blabel repository with signed-by option
+RUN echo "deb [signed-by=/etc/apt/keyrings/blabel.gpg] https://apz.fi/blabel/repo/ buster main" > /etc/apt/sources.list.d/blabel.list
+
+# Update package lists and install blabel
+RUN apt-get update && apt-get install -y blabel
+
+# Clean up to reduce image size
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
