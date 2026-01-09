@@ -5,4 +5,5 @@
 
 # Update the container and install packages
 dnf update -y
-grep -v '^#' ./scanners.packages | xargs dnf install -y
+#nothing to install
+#grep -v '^#' ./blabels.packages | xargs dnf install -y
