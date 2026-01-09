@@ -12,20 +12,18 @@ RUN chmod +x scanners.sh distrobox-shims.sh && /scanners.sh
 RUN rm /scanners.sh /distrobox-shims.sh /scanners.packages
 
 # create a .desktop file for gscan2pdf
+# this printf syntax used because each RUN instruction is executed as a separate shell command
 RUN mkdir -p /usr/share/applications && \
-    cat > /usr/share/applications/gscan2pdf.desktop << 'EOF'
-[Desktop Entry]
-Name=gscan2pdf
-GenericName=PDF Scanner
-Comment=Scan documents and create PDF files
-Exec=gscan2pdf %F
-Icon=gscan2pdf
-Terminal=false
-Type=Application
-Categories=Graphics;Scanning;Office;
-MimeType=image/png;image/jpeg;image/tiff;application/pdf;
-StartupNotify=true
-EOF
-
-RUN chmod 644 /usr/share/applications/gscan2pdf.desktop && \
-    update-desktop-database /usr/share/applications || true
+    printf '%s\n' \
+    '[Desktop Entry]' \
+    'Name=gscan2pdf' \
+    'GenericName=PDF Scanner' \
+    'Comment=Scan documents and create PDF files' \
+    'Exec=gscan2pdf %F' \
+    'Icon=gscan2pdf' \
+    'Terminal=false' \
+    'Type=Application' \
+    'Categories=Graphics;Scanning;Office;' \
+    'MimeType=image/png;image/jpeg;image/tiff;application/pdf;' \
+    'StartupNotify=true' \
+    > /usr/share/applications/gscan2pdf.desktop
