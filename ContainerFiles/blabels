@@ -1,4 +1,4 @@
-FROM quay.io/fedora/debian-toolbox:latest
+FROM docker.io/library/debian:stable
 
 LABEL com.github.containers.toolbox="true"
 
