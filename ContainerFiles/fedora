@@ -12,4 +12,4 @@ COPY ../packages/fedora.packages /
 
 # Run the setup scripts
 RUN chmod +x fedora.sh distrobox-shims.sh && /fedora.sh
-RUN rm /fedor.sh /distrobox-shims.sh /fedora.packages
+RUN rm /fedora.sh /distrobox-shims.sh /fedora.packages
