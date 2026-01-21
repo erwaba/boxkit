@@ -2,3 +2,5 @@ ansible
 age
 butane
 podlet
+# needed by ansible
+sshpass
