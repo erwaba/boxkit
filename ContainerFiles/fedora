@@ -10,6 +10,9 @@ COPY ../scripts/fedora.sh /
 COPY ../scripts/distrobox-shims.sh /
 COPY ../packages/fedora.packages /
 
+# Install bupy
+RUN pip3 install --break-system-packages bupy
+
 # Run the setup scripts
 RUN chmod +x fedora.sh distrobox-shims.sh && /fedora.sh
 RUN rm /fedora.sh /distrobox-shims.sh /fedora.packages
