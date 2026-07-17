@@ -6,3 +6,5 @@ podlet
 sshpass
 # needed to install bupy
 pip3
+# to serve repo over git protocol via cli
+git-daemon
